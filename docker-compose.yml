@@ -1,0 +1,32 @@
+version: '2'
+services:
+      gpsi_db:
+            image: postgres:9.4
+            container_name: gpsi-prod-db
+            ports:
+                  - "5432:5432"
+            environment:
+                  - POSTGRES_USER=globalerp
+                  - POSTGRES_PASSWORD=VW7CC7ZH5NG6B6AJ
+      gpsi:
+            image: odoo:9
+            container_name: gpsi-prod
+            ports:
+                  - "8069:8069"
+            volumes:
+                  - /root/src:/mnt/extra-addons:Z
+            environment:
+                  - DB_PORT_5432_TCP_ADDR=gpsi_db
+                  - DB_PORT_5432_TCP_PORT=5432
+                  - DB_ENV_POSTGRES_USER=globalerp
+                  - DB_ENV_POSTGRES_PASSWORD=VW7CC7ZH5NG6B6AJ
+            depends_on:
+                  - gpsi_db
+
+      nginx:
+            image: globalstd/nginx:latest
+            container_name: nginx
+            ports:
+                  - "80:80"
+            depends_on: 
+                  - gpsi
