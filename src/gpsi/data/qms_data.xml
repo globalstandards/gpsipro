@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data noupdate="1">
+
+        <record id="qms_category" model="ir.module.category">
+            <field name="name">QMS Vendor Audits</field>
+        </record>
+
+        <record id="group_qms_user" model="res.groups">
+            <field name="name">User</field>
+            <field name="category_id" ref="gpsi.qms_category"/>
+        </record>
+
+        <record id="group_qms_auditor" model="res.groups">
+            <field name="name">Auditor</field>
+            <field name="category_id" ref="gpsi.qms_category"/>
+            <field name="implied_ids" eval="[(4, ref('group_qms_user'))]"/>
+        </record>
+
+        <record id="group_qms_planning" model="res.groups">
+            <field name="name">Planning</field>
+            <field name="category_id" ref="gpsi.qms_category"/>
+            <field name="implied_ids" eval="[(4, ref('group_qms_auditor'))]"/>
+        </record>
+
+        <record id="group_qms_manager" model="res.groups">
+            <field name="name">Manager</field>
+            <field name="category_id" ref="gpsi.qms_category"/>
+            <field name="implied_ids" eval="[(4, ref('group_qms_planning'))]"/>
+        </record>
+
+        <record id="seq_qms_checklist" model="ir.sequence">
+            <field name="name">Checklist</field>
+            <field name="code">gpsi.qms.checklist.question</field>
+            <field name="prefix">CQ</field>
+            <field name="padding">3</field>
+            <field name="company_id" eval="False"/>
+        </record>
+
+        <record id="seq_qms_audit_order" model="ir.sequence">
+            <field name="name">Checklist</field>
+            <field name="code">gpsi.qms.audit.order</field>
+            <field name="prefix">AO</field>
+            <field name="padding">3</field>
+            <field name="company_id" eval="False"/>
+        </record>
+
+        <record id="seq_qms_audit_plan" model="ir.sequence">
+            <field name="name">Audit Plan</field>
+            <field name="code">gpsi.qms.audit.plan</field>
+            <field name="prefix">AP</field>
+            <field name="padding">3</field>
+            <field name="company_id" eval="False"/>
+        </record>
+
+        <record id="seq_qms_audit_plan_schedule" model="ir.sequence">
+            <field name="name">Audit Plan Schedule</field>
+            <field name="code">gpsi.qms.audit.plan.schedule</field>
+            <field name="prefix">APS</field>
+            <field name="padding">3</field>
+            <field name="company_id" eval="False"/>
+        </record>
+
+        <record id="seq_qms_audit_observation" model="ir.sequence">
+            <field name="name">Audit Observation</field>
+            <field name="code">gpsi.qms.audit.observation</field>
+            <field name="prefix">AOBS</field>
+            <field name="padding">3</field>
+            <field name="company_id" eval="False"/>
+        </record>
+
+        <record id="seq_qms_audit_report" model="ir.sequence">
+            <field name="name">Audit Report</field>
+            <field name="code">gpsi.qms.audit.report</field>
+            <field name="prefix">AR</field>
+            <field name="padding">3</field>
+            <field name="company_id" eval="False"/>
+        </record>
+
+        <record id="seq_qms_audit_assessment" model="ir.sequence">
+            <field name="name">Audit Assessment</field>
+            <field name="code">gpsi.qms.audit.assessment</field>
+            <field name="prefix">AA</field>
+            <field name="padding">3</field>
+            <field name="company_id" eval="False"/>
+        </record>
+
+        <record id="seq_qms_audit_assessment_question" model="ir.sequence">
+            <field name="name">Audit Assessment Question</field>
+            <field name="code">gpsi.qms.audit.assessment.question</field>
+            <field name="prefix">AAQ</field>
+            <field name="padding">3</field>
+            <field name="company_id" eval="False"/>
+        </record>
+
+        <record id="seq_qms_ca" model="ir.sequence">
+            <field name="name">Corrective Action</field>
+            <field name="code">gpsi.qms.ca</field>
+            <field name="prefix">CA</field>
+            <field name="padding">3</field>
+            <field name="company_id" eval="False"/>
+        </record>
+
+        <record id="seq_qms_car" model="ir.sequence">
+            <field name="name">Corrective Action request</field>
+            <field name="code">gpsi.qms.audit.car</field>
+            <field name="prefix">CAR</field>
+            <field name="padding">3</field>
+            <field name="company_id" eval="False"/>
+        </record>
+
+        <record id="seq_qms_ca" model="ir.sequence">
+            <field name="name">Corrective Action</field>
+            <field name="code">gpsi.qms.audit.ca</field>
+            <field name="prefix">CA</field>
+            <field name="padding">3</field>
+            <field name="company_id" eval="False"/>
+        </record>
+
+        <record id="seq_qms_audit_team_member" model="ir.sequence">
+            <field name="name">Audit Team Member</field>
+            <field name="code">gpsi.qms.audit.team.member</field>
+            <field name="prefix">ATM</field>
+            <field name="padding">3</field>
+            <field name="company_id" eval="False"/>
+        </record>
+
+    </data>
+</openerp>

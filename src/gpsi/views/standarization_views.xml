@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <record id="gpsi_standarization_organization_tree" model="ir.ui.view">
+            <field name="name">gpsi.standarization.organization.tree</field>
+            <field name="model">gpsi.standarization.organization</field>
+            <field name="priority">10</field>
+            <field name="arch" type="xml">
+                <tree string="Organizations" editable="bottom">
+                    <field name="name"/>
+                    <field name="code"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="gpsi_standarization_standard_tree" model="ir.ui.view">
+            <field name="name">gpsi.standarization.standard.tree</field>
+            <field name="model">gpsi.standarization.standard</field>
+            <field name="priority">10</field>
+            <field name="arch" type="xml">
+                <tree string="Standards" editable="bottom">
+                    <field name="organization_id"/>
+                    <field name="name"/>
+                    <field name="version"/>
+                </tree>
+            </field>
+        </record>
+    </data>
+</openerp>

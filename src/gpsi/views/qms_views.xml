@@ -1,0 +1,622 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <menuitem
+            id="qms_root_menu" 
+            name="Audits"
+            sequence="10"
+            groups="gpsi.group_qms_user">
+        </menuitem>
+
+        <menuitem
+            id="qms_contacts_menu" 
+            name="Contacts"
+            parent="qms_root_menu"
+            sequence="2">
+        </menuitem>
+
+        <act_window 
+            id="qms_suppliers_action"
+            name="Suppliers"
+            res_model="res.partner"
+            view_mode="tree,form"
+            domain="[('supplier','=',True)]">
+        </act_window>
+
+        <menuitem
+            id="qms_contacts_suppliers_menu" 
+            name="Suppliers"
+            parent="qms_contacts_menu"
+            action="qms_suppliers_action"
+            sequence="1">
+        </menuitem>
+
+        <menuitem
+            id="qms_audits_menu" 
+            name="Audits"
+            parent="qms_root_menu"
+            sequence="3">
+        </menuitem>
+
+        <act_window 
+            id="qms_internal_audits_action"
+            name="Internal Audits"
+            res_model="gpsi.qms.audit.order"
+            view_mode="tree,form"
+            context="{'default_kind': 'internal', 'search_default_kind': 'internal'}">
+        </act_window>
+
+        <menuitem
+            id="qms_internal_audits_menu" 
+            name="Internal Audits"
+            parent="qms_audits_menu"
+            action="qms_internal_audits_action"
+            sequence="1">
+        </menuitem>
+
+        <act_window 
+            id="qms_vendor_audits_action"
+            name="Vendor Audits"
+            res_model="gpsi.qms.audit.order"
+            view_mode="tree,form"
+            context="{'default_kind': 'vendor', 'search_default_kind': 'vendor'}">
+        </act_window>
+
+        <menuitem
+            id="qms_vendor_audits_menu" 
+            name="Vendor Audits"
+            parent="qms_audits_menu"
+            action="qms_vendor_audits_action"
+            sequence="2">
+        </menuitem>
+
+        <act_window 
+            id="qms_certification_audits_action"
+            name="Certification Audits"
+            res_model="gpsi.qms.audit.order"
+            view_mode="tree,form"
+            context="{'default_kind': 'certification', 'search_default_kind': 'certification'}">
+        </act_window>
+
+        <menuitem
+            id="qms_certification_audits_menu" 
+            name="Certification Audits"
+            parent="qms_audits_menu"
+            action="qms_certification_audits_action"
+            sequence="3">
+        </menuitem>
+
+        <menuitem
+            id="qms_issues_menu" 
+            name="Issues"
+            parent="qms_root_menu"
+            sequence="4">
+        </menuitem>
+
+        <act_window 
+            id="qms_nonconformities_action"
+            name="Nonconformities"
+            res_model="gpsi.qms.audit.observation"
+            view_mode="tree,form"
+            domain="[('kind','=','nc')]"
+            context="{'default_kind':'nc'}">
+        </act_window>
+
+        <menuitem
+            id="qms_nonformities_menu" 
+            name="Nonconformities"
+            parent="qms_issues_menu"
+            action="qms_nonconformities_action"
+            sequence="1">
+        </menuitem>
+
+        <act_window 
+            id="qms_car_action"
+            name="Action Requests"
+            res_model="gpsi.qms.audit.car"
+            view_mode="tree,form">
+        </act_window>
+
+        <menuitem
+            id="qms_car_menu" 
+            name="Action Requests"
+            parent="qms_issues_menu"
+            action="qms_car_action"
+            sequence="2">
+        </menuitem>
+
+        <act_window
+            id="qms_ca_action"
+            name="Corrective Actions"
+            res_model="gpsi.qms.audit.ca"
+            view_mode="tree,form"
+            domain="[('kind','=','corrective')]">
+        </act_window>
+
+        <menuitem
+            id="qms_ca_menu" 
+            name="Corrective Actions"
+            parent="qms_issues_menu"
+            action="qms_ca_action"
+            sequence="3">
+        </menuitem>
+
+        <act_window
+            id="qms_pa_action"
+            name="Preventive Actions"
+            res_model="gpsi.qms.audit.ca"
+            view_mode="tree,form"
+            domain="[('kind','=','preventive')]">
+        </act_window>
+
+        <menuitem
+            id="qms_pa_menu" 
+            name="Preventive Actions"
+            parent="qms_issues_menu"
+            action="qms_pa_action"
+            sequence="4">
+        </menuitem>
+
+        <menuitem
+            id="qms_reports_menu" 
+            name="Reports"
+            parent="qms_root_menu"
+            sequence="4">
+        </menuitem>
+
+        <act_window 
+            id="qms_reports_audits_action"
+            name="Audits"
+            res_model="gpsi.qms.audit.order"
+            view_mode="pivot,graph">
+        </act_window>
+
+        <menuitem
+            id="qms_reports_audits_menu" 
+            name="Audits"
+            parent="qms_reports_menu"
+            action="qms_reports_audits_action"
+            sequence="1">
+        </menuitem>
+
+        <menuitem
+            id="qms_conf_menu" 
+            name="Configuration"
+            parent="qms_root_menu"
+            sequence="5">
+        </menuitem>
+
+        <act_window 
+            id="qms_conf_settings_action"
+            name="Settings"
+            res_model="gpsi.qms.audit.order"
+            view_mode="tree,form">
+        </act_window>
+
+        <menuitem
+            id="qms_conf_settings_menu" 
+            name="Settings"
+            parent="qms_conf_menu"
+            action="qms_conf_settings_action"
+            sequence="1">
+        </menuitem>
+
+        <act_window 
+            id="qms_conf_checklists_action"
+            name="Checklists"
+            res_model="gpsi.qms.checklist"
+            view_mode="tree,form">
+        </act_window>
+
+        <menuitem
+            id="qms_conf_checklists_menu" 
+            name="Checklists"
+            parent="qms_conf_menu"
+            action="qms_conf_checklists_action"
+            sequence="2">
+        </menuitem>
+        
+        <record id="qms_checklist_view_tree" model="ir.ui.view">
+            <field name="name">gpsi.qms.checklist.tree</field>
+            <field name="model">gpsi.qms.checklist</field>
+            <field name="arch" type="xml">
+                <tree string="Checklists">
+                    <field name="name"/>
+                    <field name="company_id" groups="base.group_multi_company"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="qms_checklist_view_form" model="ir.ui.view">
+            <field name="name">gpsi.qms.checklist.form</field>
+            <field name="model">gpsi.qms.checklist</field>
+            <field name="arch" type="xml">
+                <form string="Checklist">
+                    <sheet>
+                        <field name="id" invisible="1"/>
+                        <group>
+                            <group>
+                                <field name="name"/>
+                                <field name="company_id" groups="base.group_no_one,gpsi.group_qms_mva_planning"/>
+                            </group>
+                            <group>
+                                <field name="version"/>
+                            </group>
+                        </group>
+                        <notebook>
+                            <page string="Questions">
+                                <field name="question_ids" context="{'default_checklist_id': id}">
+                                    <tree default_order="sequence">
+                                        <field name="sequence" widget="handle"/>
+                                        <field name="section_id"/>
+                                        <field name="question"/>
+                                    </tree>
+                                </field>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="qms_checklist_question_view_form" model="ir.ui.view">
+            <field name="name">gpsi.qms.checklist.question.form</field>
+            <field name="model">gpsi.qms.checklist.question</field>
+            <field name="arch" type="xml">
+                <form string="Checklist Question">
+                    <sheet>
+                        <field name="id" invisible="1"/>
+                        <field name="checklist_id" invisible="1"/>
+                        <group>
+                            <group>
+                                <field name="name"/>
+                                <field name="section_id"/>
+                            </group>
+                            <group>
+                                <field name="doc_ref_id" 
+                                    domain="[('res_model', '=', 'gpsi.qms.mva.checklist'), ('res_id', '=', checklist_id)]"
+                                    context="{'default_res_model': 'gpsi.qms.mva.checklist', 'default_res_id': checklist_id}"/>
+                                <field name="sequence" groups="base.group_no_one"/>
+                            </group>
+                        </group>
+                        <notebook>
+                            <page string="Question">
+                                <field name="question"/>
+                            </page>
+                            <page string="Requirement">
+                                <field name="requirement"/>
+                            </page>
+                            <page string="Tips">
+                                <field name="tips"/>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <!-- Audit Orders -->
+        <record id="qms_audit_order_view_search" model="ir.ui.view">
+            <field name="name">gpsi.qms.audit.order.search</field>
+            <field name="model">gpsi.qms.audit.order</field>
+            <field name="arch" type="xml">
+                <search string="Audits">
+                    <field name="kind" string="Type"/>
+                </search>
+            </field>
+        </record>
+
+        <record id="qms_audit_order_view_tree" model="ir.ui.view">
+            <field name="name">gpsi.qms.audit.order.tree</field>
+            <field name="model">gpsi.qms.audit.order</field>
+            <field name="arch" type="xml">
+                <tree string="Audits" decoration-muted="state=='canceled'">
+                    <field name="name" string="Reference"/>
+                    <field name="vendor_id"/>
+                    <field name="company_id" groups="base.group_multi_company"/>
+                    <field name="create_date"/>
+                    <field name="state"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="qms_audit_order_view_form" model="ir.ui.view">
+            <field name="name">gpsi.qms.audit.order.form</field>
+            <field name="model">gpsi.qms.audit.order</field>
+            <field name="arch" type="xml">
+                <form string="Audit Order">
+                    <header>
+                        <field name="state" widget="statusbar" statusbar_visible="new,review,done"/>
+                    </header>
+                    <sheet>
+                        <field name="id" invisible="1"/>
+                        <div class="oe_title">
+                            <h1>
+                                <field name="name" readonly="1"/>
+                            </h1>
+                        </div>
+                        <group>
+                            <group>
+                                <field name="company_id" groups="base.group_no_one,gpsi.group_qms_mva_planning"/>
+                                <field name="checklist_id" required="1"/>
+                                <field name="vendor_id" required="1"/>
+                                <field name="facility_id"/>
+                            </group>
+                            <group>
+                                <field name="start_date"/>
+                                <field name="end_date"/>
+                                <field name="kind" groups="base.group_no_one"/>
+                            </group>
+                        </group>
+                        <group string="Execution">
+                            <group>
+                                <field name="opportunity_id" 
+                                    context="{'default_type': 'opportunity'}"/>
+                                <field name="saleorder_id"/>
+                            </group>
+                            <group>
+                                <field name="plan_id" groups="base.group_no_one,gpsi.group_qms_auditor" 
+                                    context="{'default_order_id': id}"/>
+                                <field name="assessment_id" groups="base.group_no_one,gpsi.group_qms_auditor" 
+                                    context="{'default_order_id': id}"/>
+                            </group>
+                        </group>
+                        <notebook>
+                            <page name="notes" string="Notes">
+                                <field name="notes" widget="html"/>
+                            </page>
+                        </notebook>
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids" widget="mail_followers"/>
+                        <field name="message_ids" widget="mail_thread"/>
+                    </div>
+                </form>
+            </field>
+        </record>
+
+        <record id="qms_audit_order_view_graph" model="ir.ui.view">
+            <field name="name">qms.audit.order.graph</field>
+            <field name="model">gpsi.qms.audit.order</field>
+            <field name="arch" type="xml">
+                <graph string="Audits">
+                    <field name="vendor_id"/>
+                </graph>
+            </field>
+        </record>
+
+        <record id="qms_audit_plan_view_form" model="ir.ui.view">
+            <field name="name">gpsi.qms.audit.plan.form</field>
+            <field name="model">gpsi.qms.audit.plan</field>
+            <field name="arch" type="xml">
+                <form string="Audit Plan">
+                    <sheet>
+                        <field name="id" invisible="1"/>
+                        <group>
+                            <group>
+                                <field name="name" readonly="1"/>
+                                <field name="company_id" groups="base.group_no_one"/>
+                            </group>
+                            <group>
+                                <field name="leader_id"/>
+                            </group>
+                        </group>
+                        <notebook>
+                            <page name="team" string="Team">
+                                <field name="team_ids" context="{'default_plan_id': id}">
+                                    <tree editable="bottom">
+                                        <field name="user_id" required="1"/>
+                                        <field name="role"/>
+                                    </tree>
+                                </field>
+                            </page>
+                            <page string="Schedule">
+                                <field name="schedule_ids" context="{'default_plan_id': id}">
+                                    <tree editable="bottom">
+                                        <field name="date" required="1"/>
+                                        <field name="hour" widget="float_time" required="1"/>
+                                        <field name="auditor_id"/>
+                                        <field name="description"/>
+                                    </tree>
+                                </field>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="qms_audit_assessment_view_form" model="ir.ui.view">
+            <field name="name">gpsi.qms.audit.assessment.form</field>
+            <field name="model">gpsi.qms.audit.assessment</field>
+            <field name="arch" type="xml">
+                <form string="Audit Assessment">
+                    <sheet> 
+                        <field name="id" invisible="1"/>
+                        <group>
+                            <group>
+                                <field name="name"/>
+                                <field name="company_id" groups="base.group_no_one"/>
+                            </group>
+                            <group>
+                                <field name="order_id" groups="base.group_no_one"/>
+                            </group>
+                        </group>
+                        <notebook>
+                            <page string="Observations" attrs="{'invisible': [('id','=',False)]}">
+                                <field name="observation_ids">
+                                    <tree default_order="question_sequence" create="0" delete="0">
+                                        <field name="question_section_id"/>
+                                        <field name="question_text"/>
+                                    </tree>
+                                </field>
+                            </page>
+                            <page string="Auditor Notes">
+                                <field name="notes"/>
+                            </page>
+                        </notebook>
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids" widget="mail_followers"/>
+                        <field name="message_ids" widget="mail_thread"/>
+                    </div>
+                </form>
+            </field>
+        </record>
+
+        <!-- Audit Observation -->
+        <record id="qms_audit_observation_nc_view_tree" model="ir.ui.view">
+            <field name="name">gpsi.qms.audit.observation.nc.tree</field>
+            <field name="model">gpsi.qms.audit.observation</field>
+            <field name="arch" type="xml">
+                <tree string="Nonconformities">
+                    <field name="name"/>
+                    <field name="company_id" groups="base.group_multi_company"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="qms_audit_observation_view_form" model="ir.ui.view">
+            <field name="name">gpsi.qms.audit.observation.form</field>
+            <field name="model">gpsi.qms.audit.observation</field>
+            <field name="arch" type="xml">
+                <form string="Audit Observation">
+                    <sheet>
+                        <field name="id" invisible="1"/>
+                        <group>
+                            <group>
+                                <field name="name"/>
+                                <field name="question_doc_ref_id" readonly="1"/>
+                            </group>
+                            <group>
+                                <field name="kind" required="1"/>
+                                <field name="nc_rating" attrs="{'invisible': [('kind','!=','nc')]}"/>
+                                <field name="car_id" context="{'default_observation_id': id}"/>
+                            </group>
+                        </group>
+                        <group>
+                            <field name="question_text" readonly="1"/>
+                        </group>
+                        <notebook>
+                            <page string="Evidence">
+                                <field name="evidence"/>
+                            </page>
+                            <page string="NC Evidence" attrs="{'invisible': [('kind','!=','nc')]}">
+                                <field name="nc_evidence"/>
+                            </page>
+                            <page string="NC Statement" attrs="{'invisible': [('kind','!=','nc')]}">
+                                <field name="nc_statement"/>
+                            </page>
+                            <page string="Requirement">
+                                <field name="question_requirement" readonly="1"/>
+                            </page>
+                            <page string="Tips">
+                                <field name="question_tips" readonly="1"/>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <!-- Action Request -->
+        <record id="qms_car_view_tree" model="ir.ui.view">
+            <field name="name">gpsi.qms.audit.car.tree</field>
+            <field name="model">gpsi.qms.audit.car</field>
+            <field name="arch" type="xml">
+                <tree string="Action Requests">
+                    <field name="name"/>
+                    <field name="company_id" groups="base.group_multi_company"/>
+                    <field name="due_date"/>
+                    <field name="state"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="qms_car_view_form" model="ir.ui.view">
+            <field name="name">gpsi.qms.audit.car.form</field>
+            <field name="model">gpsi.qms.audit.car</field>
+            <field name="arch" type="xml">
+                <form string="Action Request">
+                    <sheet>
+                        <field name="id" invisible="1"/>
+                        <group>
+                            <group>
+                                <field name="name"/>
+                                <field name="company_id" groups="base.group_no_one"/>
+                                <field name="assigned_company_id" groups="base.group_no_one"/>
+                            </group>
+                            <group>
+                                <field name="due_date"/>
+                                <field name="observation_id" groups="base.group_no_one"/>
+                            </group>
+                        </group>
+                        <notebook>
+                            <page string="Inmediate Correction">
+                                <field name="inmediate_correction"/>
+                            </page>
+                            <page string="Root Cause Analysis">
+                                <field name="root_cause"/>
+                            </page>
+                            <page string="Actions Plans">
+                                <field name="action_ids" context="{'default_car_id': id}">
+                                    <tree>
+                                        <field name="kind"/>
+                                        <field name="responsible"/>
+                                        <field name="date"/>
+                                    </tree>
+                                </field>
+                            </page>
+                        </notebook>
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids" widget="mail_followers"/>
+                        <field name="message_ids" widget="mail_thread"/>
+                    </div>
+                </form>
+            </field>
+        </record>
+
+        <!-- Corrective Action -->
+        <record id="qms_ca_view_tree" model="ir.ui.view">
+            <field name="name">gpsi.qms.audit.ca.tree</field>
+            <field name="model">gpsi.qms.audit.ca</field>
+            <field name="arch" type="xml">
+                <tree string="Corrective Actions">
+                    <field name="name"/>
+                    <field name="responsible"/>
+                    <field name="date"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="qms_ca_view_form" model="ir.ui.view">
+            <field name="name">gpsi.qms.audit.ca.form</field>
+            <field name="model">gpsi.qms.audit.ca</field>
+            <field name="arch" type="xml">
+                <form string="Action Request">
+                    <sheet>
+                        <field name="id" invisible="1"/>
+                        <group>
+                            <group>
+                                <field name="name"/>
+                                <field name="company_id" groups="base.group_no_one"/>
+                                <field name="car_id" groups="base.group_no_one"/>
+                                <field name="responsible"/>
+                            </group>
+                            <group>
+                                <field name="date"/>
+                                <field name="kind"/>
+                            </group>
+                        </group>
+                        <notebook>
+                            <page string="Description">
+                                <field name="description"/>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+    </data>
+</openerp>

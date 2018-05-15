@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+       <record id="sale_partner_form" model="ir.ui.view">
+            <field name="name">gpsi.sale.partner.form.inherit</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base.view_partner_form"/>
+            <field name="priority">50</field>
+            <field name="arch" type="xml">
+                <xpath expr="//notebook//form//field[@name='mobile']" position="after">
+                    <field name="gpsi_rfc" attrs="{'invisible': [('type','!=', 'invoice')]}"/>
+                </xpath>
+            </field>
+        </record>
+
+    </data>
+</openerp>
