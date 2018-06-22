@@ -24,7 +24,7 @@ services:
                   - gpsi_db
 
       nginx:
-            image: globalstd/nginx:latest
+            image: globalstd/nginx:gpsipro
             container_name: nginx
             ports:
                   - "80:80"
